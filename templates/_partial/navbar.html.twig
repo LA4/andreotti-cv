@@ -1,15 +1,32 @@
 <nav class="navbar">
 	<div class="navbar-logo"></div>
-	<div class="navbar-navigation">
-		<ul class="navbar-navigation-list">
-			<li>Acceuil</li>
-			<li>CV</li>
-			<li>
-				à Propos</li>
-			<li>
-				Contact</li>
-			<li>
-				Mes projets</li>
-		</ul>
+	<div class="navbar-navigation-container">
+		<div class="navbar-burger">
+			<span class="navbar-burger-span"></span>
+			<span class="navbar-burger-span"></span>
+			<span class="navbar-burger-span"></span>
+		</div>
+
 	</div>
+
 </nav>
+<div class="navbar-navigation">
+	<ul class="navbar-navigation-list">
+
+		<li>
+			<a href="{{path('app_home')}}">Acceuil</a>
+		</li>
+		<li>
+			<a href="{{path('app_cv')}}">CV</a>
+		</li>
+		<li>
+			<a href="{{path('app_about')}}">à Propos</a>
+		</li>
+		<li>
+			<a href="{{path('app_contact')}}">Contact</a>
+		</li>
+		<li>
+			<a href="{{path('app_projects')}}">Mes projets</a>
+		</li>
+	</ul>
+</div>
