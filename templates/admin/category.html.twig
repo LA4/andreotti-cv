@@ -10,7 +10,7 @@
 			<ul>
 				{% for cat in categories %}
 					<li>{{cat.name}}</li>
-					<a href={{path('app_admin_category_delete',{"id":cat.id} )}}>suppr</a>
+					<a style="color:white;" href={{path('app_admin_category_delete',{"id":cat.id} )}}>suppr</a>
 					{%endfor%}
 				</ul>
 			</aside>
