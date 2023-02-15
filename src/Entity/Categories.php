@@ -18,7 +18,7 @@ class Categories
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
-    #[ORM\ManyToMany(targetEntity: Pictures::class, mappedBy: 'category')]
+    #[ORM\OneToMany(mappedBy: 'Categories', targetEntity: Pictures::class, orphanRemoval: true)]
     private Collection $pictures;
 
     public function __construct()
@@ -55,7 +55,7 @@ class Categories
     {
         if (!$this->pictures->contains($picture)) {
             $this->pictures->add($picture);
-            $picture->addCategory($this);
+            $picture->setCategories($this);
         }
 
         return $this;
@@ -64,9 +64,16 @@ class Categories
     public function removePicture(Pictures $picture): self
     {
         if ($this->pictures->removeElement($picture)) {
-            $picture->removeCategory($this);
+            // set the owning side to null (unless already changed)
+            if ($picture->getCategories() === $this) {
+                $picture->setCategories(null);
+            }
         }
 
         return $this;
+    }
+    public function __toString()
+    {
+        return $this->name;
     }
 }
