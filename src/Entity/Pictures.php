@@ -19,9 +19,10 @@ class Pictures
     #[ORM\Column(length: 255)]
     private ?string $filename = null;
 
-    #[ORM\ManyToOne(inversedBy: 'pictures')]
+    #[ORM\ManyToOne(inversedBy: 'pictures',targetEntity: Categories::class,)]
     #[ORM\JoinColumn(nullable: false)]
     private ?Categories $Categories = null;
+
 
     public function getId(): ?int
     {
@@ -63,4 +64,13 @@ class Pictures
 
         return $this;
     }
+
+
+
+    public function __toString()
+    {
+        return $this->Categories;
+    }
+
+   
 }

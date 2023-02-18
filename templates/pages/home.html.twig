@@ -6,25 +6,60 @@
 {% block body %}
 
 	<main class="home">
+
 		<header class="home-header">
 			<div class="home-header-background"></div>
-			<h1>ANDREOTTI Ludoovic</h1>
+			<h1 class="home-title home-title-move">ANDREOTTI Ludovic
+				<span class="home-title-underline"></span>
+			</h1>
+			<div class="home-subtitle-container">
+				<h2 class="home-subtitle">Développeur WEB</h2>
+			</div>
 		</header>
-		<div class="home-interest">
-			<aside class="home-interest-list">
-				<ul>
-					<li>Graphisme</li>
-					<li>Dessin</li>
-					<li>Velo</li>
-					<li>Le Monde des notes</li>
-				</ul>
+
+
+		<div class="home-interest ">
+
+			<div class="home-explain ">
+				<span class="home-explain-title">Bienvenue !</span>
+				<span class="home-explain-text">
+					<p>Actuellement en reconversion professionnelle,</p>
+					<p>je suis à la recherche d’une structure afin de mener à bien mon projet dans le développement WEB.</p>
+				</span>
+				<div class="home-interest-r">
+					Mon expérience passée me permet de vous exposer mes créations :
+				</div>
+			</div>
+
+
+			<aside class="home-interest-list ">
+				<a class="home-interest-items" href="{{path('app_home' ,{name:"graphisme"})}}">
+					<span>Graphisme
+						<span class="home-interest-cover"></span>
+					</span>
+				</a>
+				<a class="home-interest-items" href="{{path('app_home' ,{name:"dessin"})}}">
+					<span>dessin
+						<span class="home-interest-cover"></span>
+					</span>
+				</a>
+				<a class="home-interest-items" href="{{path('app_home' ,{name:"velo"})}}">
+					<span>Velo
+						<span class="home-interest-cover"></span>
+					</span>
+				</a>
 
 			</aside>
-			<div class="home-interest-view">
-				<span class="home-interest-prev"></span>
-				<img src="" alt="">
-				<span class="home-interest-next"></span>
-			</div>
+
+			{% if name %}
+				<span class="home-interest-prev ">prev</span>
+				<div class="home-interest-view  ">
+					{% for picture in pictures %}
+						<img style="display:none;" id="js-caroussel-img" src="{{asset('/uploads/images/' ~ picture.filename)}}" alt="{{picture.title}}">
+					{% endfor %}
+				</div>
+				<span class="home-interest-next">next</span>
+			{% endif %}
 		</div>
 	</main>
 {% endblock %}

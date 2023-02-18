@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Andreotti Ludovic - ajout de gategories
+{% block title %}Andreotti Ludovic - ajout de categories
 {% endblock %}
 
 {% block body %}
@@ -10,14 +10,15 @@
 			<ul>
 				{% for cat in categories %}
 					<li>{{cat.name}}</li>
+					<li></li>
 					<a style="color:white;" href={{path('app_admin_category_delete',{"id":cat.id} )}}>suppr</a>
-					{%endfor%}
-				</ul>
-			</aside>
-			<div>
-				Nouvelle catégorie
-				{{form(form)}}
+				{% endfor %}
+			</ul>
+		</aside>
+		<div>
+			Nouvelle catégorie
+			{{form(form)}}
 
-				</div>
 			</div>
-		{% endblock %}
+		</div>
+	{% endblock %}
