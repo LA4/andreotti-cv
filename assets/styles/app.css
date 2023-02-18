@@ -28,6 +28,12 @@ body {
     --blue: #0D425F;
 }
 
+p {
+    margin: 0;
+    padding: 0;
+    line-height: 1rem;
+}
+
 a {
     color: var(--grey);
     text-decoration: none;

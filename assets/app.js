@@ -9,6 +9,10 @@
 import './styles/app.css';
 import './styles/nav.css';
 import './styles/home.css';
+import './styles/footer.css';
 
 // start the Stimulus application
 import './bootstrap';
+
+import './js/caroussel';
+import './js/nav';

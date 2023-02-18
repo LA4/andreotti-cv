@@ -1,27 +1,28 @@
 .navbar {
     display: flex;
     justify-content: space-around;
-    align-items: center;
+    align-items: baseline;
     background-color: var(--grey);
-    border-bottom: 5px solid var(--yellow);
+    max-width: 100%;
+    margin: auto;
 }
 
 
 .navbar-logo {
-    display: block;
-    width: 55px;
-    height: 55px;
-    background-color: var(--yellow);
-}
-
-.navbar-navigation-container {
     display: flex;
-    flex-direction: column;
+    width: 45px;
+    height: 45px;
+    background-image: url('/public/assets/Logo-LA4.png');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin: 5px;
+    border: 2px solid var(--yellow);
+    border-radius: 50%;
 }
 
 .navbar-navigation {
     display: flex;
-    width: 100%;
     height: 25px;
 }
 
@@ -31,15 +32,64 @@
     width: 100%;
 }
 
-.navbar-navigation-list a {
-    color: var(--white);
+.navbar-navigation-list {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
 }
 
-.navbar-navigation-list li {
+.navbar-navigation-list-link {
+    z-index: 0;
     display: flex;
-    align-items: center;
-    padding: 4px;
-    border: 1px solid var(--yellow);
+    padding: 5px;
+    color: var(--white);
+    position: relative;
+    overflow: hidden;
+
+    transition: .3s;
+}
+
+.navbar-navigation-list-link:hover {
+    font-weight: bold;
+    color: var(--grey);
+    justify-content: center;
+}
+
+
+.navbar-navigation-list-link:hover .hover-link {
+
+    animation: hover-link .3s ease both;
+}
+
+.hover-link {
+    z-index: -1;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-color: var(--yellow);
+    transform: translateY(100%);
+}
+
+@keyframes hover-link {
+    from {}
+
+    to {
+        background-color: var(--yellow);
+        transform: translateY(0%);
+    }
+
+}
+
+.active {
+    font-weight: bold;
+    color: var(--grey);
+    width: 150px;
+    justify-content: center;
+    background-color: var(--yellow);
 }
 
 /* burger */

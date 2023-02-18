@@ -3,8 +3,6 @@
 namespace App\Entity;
 
 use App\Repository\PicturesRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: PicturesRepository::class)]
@@ -21,13 +19,10 @@ class Pictures
     #[ORM\Column(length: 255)]
     private ?string $filename = null;
 
-    #[ORM\ManyToMany(targetEntity: Categories::class, inversedBy: 'pictures')]
-    private Collection $category;
+    #[ORM\ManyToOne(inversedBy: 'pictures',targetEntity: Categories::class,)]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Categories $Categories = null;
 
-    public function __construct()
-    {
-        $this->category = new ArrayCollection();
-    }
 
     public function getId(): ?int
     {
@@ -58,27 +53,24 @@ class Pictures
         return $this;
     }
 
-    /**
-     * @return Collection<int, Categories>
-     */
-    public function getCategory(): Collection
+    public function getCategories(): ?Categories
     {
-        return $this->category;
+        return $this->Categories;
     }
 
-    public function addCategory(Categories $category): self
+    public function setCategories(?Categories $Categories): self
     {
-        if (!$this->category->contains($category)) {
-            $this->category->add($category);
-        }
+        $this->Categories = $Categories;
 
         return $this;
     }
 
-    public function removeCategory(Categories $category): self
-    {
-        $this->category->removeElement($category);
 
-        return $this;
+
+    public function __toString()
+    {
+        return $this->Categories;
     }
+
+   
 }

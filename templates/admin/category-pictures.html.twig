@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Andreotti Ludovic - ajout de categories
+{% endblock %}
+
+{% block body %}
+	<div class="container">
+		<aside>
+			liste des categories
+			<ul>
+				{% for category in category %}
+
+					<li>{{category.name}}</li>
+					{% for pictures in category.pictures %}
+						<img style="display:block;width:300px;height:300px;" src="{{asset('uploads/images/' ~ pictures.filename)}}" alt="">
+					{% endfor %}
+				{% endfor %}
+
+			</ul>
+		</aside>
+
+	</div>
+{% endblock %}

@@ -1,32 +1,36 @@
 <nav class="navbar">
-	<div class="navbar-logo"></div>
-	<div class="navbar-navigation-container">
-		<div class="navbar-burger">
-			<span class="navbar-burger-span"></span>
-			<span class="navbar-burger-span"></span>
-			<span class="navbar-burger-span"></span>
+
+	<a href="{{path('app_home')}}">
+		<div class="navbar-logo"></div>
+	</a>
+	<div class="navbar-navigation">
+		<div class="navbar-navigation-list">
+
+
+			<a id="js-home" class="navbar-navigation-list-link " href="{{path('app_home')}}">Acceuil
+				<span class="hover-link"></span>
+			</a>
+
+
+			<a id="js-about" class="navbar-navigation-list-link " href="{{path('app_about')}}">à Propos
+				<span class="hover-link"></span>
+			</a>
+
+
+			<a id="js-contact" class="navbar-navigation-list-link" href="{{path('app_contact')}}">Contact
+				<span class="hover-link"></span>
+			</a>
+
+
+			<a id="js-projects" class="navbar-navigation-list-link" href="{{path('app_projects')}}">projets
+				<span class="hover-link"></span>
+			</a>
+
+
+			<a id="js-cv" class="navbar-navigation-list-link" href="{{path('app_cv')}}">CV
+				<span class="hover-link"></span>
+			</a>
+
 		</div>
-
 	</div>
-
 </nav>
-<div class="navbar-navigation">
-	<ul class="navbar-navigation-list">
-
-		<li>
-			<a href="{{path('app_home')}}">Acceuil</a>
-		</li>
-		<li>
-			<a href="{{path('app_cv')}}">CV</a>
-		</li>
-		<li>
-			<a href="{{path('app_about')}}">à Propos</a>
-		</li>
-		<li>
-			<a href="{{path('app_contact')}}">Contact</a>
-		</li>
-		<li>
-			<a href="{{path('app_projects')}}">Mes projets</a>
-		</li>
-	</ul>
-</div>

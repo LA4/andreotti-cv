@@ -2,17 +2,43 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Entity\Pictures;
+use App\Entity\Categories;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class PagesController extends AbstractController
 {
-    #[Route('/', name: 'app_home')]
-    public function index(): Response
+    #[Route('/', name:'app_index')]
+    public function index()
     {
+        $name = null;
+        return $this->render('pages/home.html.twig',[
+            'name'=> $name
+        ]);
+    }
+
+    #[Route('/?{name}', name: 'app_home')]
+    public function Home(EntityManagerInterface $em, $name = null ): Response
+    {
+        
+        if($name === 'graphisme' || $name === 'dessin' || $name === 'velo')
+        {
+            $category = $em->getRepository(Categories::class)-> findBy(['name'=> $name]);
+            foreach($category as $e){
+                $categoryId = $e->getId();
+            }
+            $pictures = $em->getRepository(Pictures::class)-> findBy(['Categories'=> $categoryId]);
+        }else{
+
+            $pictures = null;
+        }
+
+        
         return $this->render('pages/home.html.twig', [
-            'controller_name' => 'PagesController',
+            'pictures' => $pictures,
+            'name' => $name
         ]);
     }
     

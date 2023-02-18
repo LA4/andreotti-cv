@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Andreotti Ludovic - ajout de gategories
+{% endblock %}
+
+{% block body %}
+	{% for message in app.flashes('succes') %}
+		{{message}}
+	{% endfor %}
+	<div style="display:flex;margin:auto;">
+		<aside>
+			liste des images
+			<div>
+				{% for picture in pictures %}
+					{{picture.title}}
+					<img style="display:block;width:300px;height:300px;" src="{{asset('uploads/images/' ~ picture.filename)}}" alt="">
+					<a style="color:red;" href="{{path('app_admin_pictures_delete',{"id":picture.id} )}}">supprimer</a>
+					<span>
+						categorie :{{ picture.categories}}
+					</span>
+				{% endfor %}
+			</div>
+		</aside>
+		<div style="display:flex;margin:auto;">
+			Nouvelle image
+			{{form(formPicture)}}
+
+			</div>
+		</div>
+	{% endblock %}

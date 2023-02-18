@@ -3,8 +3,10 @@
 namespace App\Controller\admin;
 
 use App\Entity\Categories;
+use App\Entity\Pictures;
 use App\Form\CategoryType;
 use App\Repository\CategoriesRepository;
+use App\Repository\PicturesRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -15,7 +17,10 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class CategoryController extends AbstractController
 {
     #[Route('/', name: 'add')]
-    public function category(EntityManagerInterface $em,Request $request,CategoriesRepository $categoriesRepository): Response
+    public function category(
+        EntityManagerInterface $em,
+        Request $request,
+        CategoriesRepository $categoriesRepository): Response
     {
         $category = new Categories();
         $formCategories = $this->createForm(CategoryType::class, $category);
@@ -34,7 +39,6 @@ class CategoryController extends AbstractController
 
         $categories = $categoriesRepository->findAll();
 
-
         return $this->render('admin/category.html.twig', [
             'form' => $formCategories ->createView(),
             'categories' => $categories
@@ -48,5 +52,17 @@ class CategoryController extends AbstractController
         $em -> flush();
 
          return $this->redirectToRoute('app_admin_category_add');
+    }
+
+    #[Route('/{name}',name:'show')]
+    public function show(CategoriesRepository $categoriesRepository,$name)
+    {
+
+        $category = $categoriesRepository-> findBy(['name'=> $name]);
+
+
+        return $this->render('admin/category-pictures.html.twig', [
+            'category' => $category,
+        ]);
     }
 }
