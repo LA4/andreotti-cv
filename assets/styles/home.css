@@ -151,10 +151,9 @@
 .home-explain {
     display: flex;
     margin: 0 auto;
-    max-width: 100%;
+    min-width: 400px;
     height: 400px;
     position: relative;
-    border: 2px solid red;
 }
 
 .home-explain-title {
@@ -170,18 +169,50 @@
     height: 100px;
     color: var(--grey);
     background-color: var(--yellow);
+    transition: .6s;
+    animation: shadowing-left 2s ease-in-out both;
+    animation-delay: 1.6s;
 
+}
+
+@keyframes shadowing-left {
+    0% {
+        box-shadow: 0 0 rgba(255, 193, 78, 0.5);
+    }
+
+    50% {
+        box-shadow: -10px 10px var(--grey);
+    }
+
+    100% {
+        box-shadow: -5px 5px rgba(255, 193, 78, 0.6);
+    }
+}
+
+@keyframes shadowing-right {
+    0% {
+        box-shadow: 0 0 rgba(255, 193, 78, 0.5);
+    }
+
+    50% {
+        box-shadow: 10px 10px var(--grey);
+    }
+
+    100% {
+        box-shadow: 5px 5px rgba(255, 193, 78, 0.6);
+    }
 }
 
 .home-explain-text {
     position: absolute;
     top: 50%;
-    left: calc(100% - 50%);
+    left: 30%;
 
     display: flex;
     flex-direction: column;
     text-align: center;
-    width: 80%;
+    width: 400px;
+    overflow: auto;
 
     font-weight: bold;
     font-size: 1rem;
@@ -190,4 +221,70 @@
 
     color: var(--grey);
     background-color: var(--yellow);
+    animation: shadowing-right 2s ease both;
+    animation-delay: 3s;
+}
+
+
+.home-explain-text-p1 {
+    display: block;
+    padding-bottom: 1.2rem;
+}
+
+.home-explain-text-p2 {
+    display: block;
+    font-weight: bold;
+    text-align: left;
+}
+
+.home-interest-container {
+    display: block;
+    margin: auto;
+    margin-bottom: 50px;
+    width: 500px;
+    position: relative;
+}
+
+.home-interest-prev {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+    width: 50px;
+    height: 50px;
+    background-color: var(--yellow);
+    color: var(--grey);
+    border-radius: 50%;
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    left: 5%;
+    transition: .3s;
+    user-select: none;
+}
+
+.home-interest-next {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+    width: 50px;
+    height: 50px;
+    background-color: var(--yellow);
+    color: var(--grey);
+    border-radius: 50%;
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    right: 5%;
+    transition: .3s;
+    user-select: none;
+}
+
+.home-interest-next:hover {
+    transform: translateX(-5%);
+}
+
+.home-interest-prev:hover {
+    transform: translateX(-5%);
 }
