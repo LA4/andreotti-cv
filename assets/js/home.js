@@ -2,5 +2,5 @@
 // const homeExplain = document.querySelector(".home-explain");
 
 // homeExplain.addEventListener('mouseenter', () => {
-//     homeExplainTitle.classList.toggle("shadowing");
+//     homeExplainTitle.classList.add("contact-anim-righ-in");
 // })

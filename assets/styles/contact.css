@@ -1,0 +1,101 @@
+.contact-header {
+    display: flex;
+    width: 100%;
+    height: 50px;
+    background-color: var(--yellow);
+}
+
+.contact-container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    margin: 50px auto;
+    width: 400px;
+    background-color: var(--blue);
+    padding: 25px;
+
+    border: 4px solid var(--yellow);
+    border-radius: 18px;
+
+    box-shadow: 5px 5px rgba(255, 193, 78, 0.5);
+    box-shadow: inset 0px 5px 5px var(--grey);
+    font-size: 1.1rem;
+    transition: .6s;
+
+}
+
+.contact-background {
+    display: flex;
+    width: 100%;
+    height: 200px;
+    background-image: url(/public/assets/Logo-LA4.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    margin-bottom: 25px;
+}
+
+.contact-anim-righ-in {
+    animation: rotate-right-in .6s both;
+}
+
+.contact-anim-left-in {
+    animation: rotate-left-in .6s both;
+}
+
+@keyframes rotate-right-in {
+    from {
+        transform: perspective(1200px) rotateX(0) rotateY(0) rotateZ();
+    }
+
+    to {
+        transform: perspective(1200px) rotateX(0) rotateY(25deg) rotateZ(-5deg);
+    }
+
+}
+
+@keyframes rotate-left-in {
+    from {
+        transform: perspective(1200px) rotateX(0) rotateY(0) rotateZ();
+    }
+
+    to {
+        transform: perspective(1200px) rotateX(0) rotateY(-25deg) rotateZ(-5deg);
+    }
+
+}
+
+.contact-email {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.button-copy {
+    background-color: var(--yellow);
+    border: none;
+    border-radius: 8px;
+    display: block;
+    width: 50px;
+    height: 25px;
+    padding: 5px;
+    cursor: pointer;
+}
+
+.contact-rezo {
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+}
+
+.contact-rezo a {
+    color: var(--white);
+    cursor: pointer;
+    transition: .6s;
+}
+
+.contact-rezo a:hover {
+    text-decoration: underline var(--yellow);
+}
