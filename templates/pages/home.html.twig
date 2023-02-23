@@ -20,8 +20,18 @@
 
 		<div class="home-interest ">
 
+
 			<div class="home-explain ">
-				<span class="home-explain-title ">Bienvenue !</span>
+				<span class="home-explain-title ">
+
+					{% if app.user %}
+						Bienvenue
+						{{app.user.pseudo}}
+						!
+					{% else %}
+						Bienvenue !
+					{% endif %}
+				</span>
 				<span class="home-explain-text">
 					<p class="home-explain-text-p1">Actuellement en reconversion professionnelle,</p>
 					<p class="home-explain-text-p2">je suis à la recherche d’une structure afin de mener à bien mon projet dans le développement WEB.</p>

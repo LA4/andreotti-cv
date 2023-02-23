@@ -1,0 +1,110 @@
+.active-cv {
+    display: block;
+
+}
+
+.inactive-cv {
+    display: none;
+}
+
+.cv-header {
+    display: flex;
+    width: 100%;
+    height: 50px;
+    background-color: var(--yellow);
+}
+
+.cv-pro {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    height: 100%;
+    margin: auto;
+
+}
+
+.cv-title {
+    display: flex;
+    justify-content: center;
+    border: 4px solid var(--yellow);
+    border-radius: 8px;
+    background-color: var(--yellow);
+    color: var(--grey);
+    cursor: pointer;
+}
+
+.cv-pro-1 {
+    display: flex;
+    flex-direction: column;
+
+}
+
+.cv-pro-h4 {
+    opacity: 0;
+    text-align: center;
+    text-decoration: underline var(--yellow);
+
+}
+
+.cv-pro-h4-anim {
+    animation: cvproappear .8s both;
+}
+
+.cv-pro-ul {
+    flex-direction: column;
+}
+
+.cv-pro-1 li {
+    list-style-type: circle;
+    margin-left: 20px;
+    margin-bottom: 10px;
+}
+
+@keyframes cvproappear {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.cv-perso {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    height: 100%;
+    margin: auto;
+    border-left: 4px solid var(--yellow);
+}
+
+.cv-perso-title {
+    display: flex;
+    justify-content: center;
+    border: 4px solid var(--yellow);
+    background-color: var(--yellow);
+    color: var(--grey);
+    cursor: pointer;
+    border-radius: 0 8px 8px 0;
+    margin-top: 0;
+
+}
+
+.cv-web {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    max-width: 300px;
+    margin: 25px;
+}
+
+.cv-perso-h4 {
+    text-align: center;
+    text-decoration: underline var(--yellow);
+}
+
+.cv-perso-img {
+    margin: auto;
+    width: 200px;
+}

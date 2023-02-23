@@ -21,15 +21,22 @@
 				<span class="hover-link"></span>
 			</a>
 
-
-			<a id="js-projects" class="navbar-navigation-list-link" href="{{path('app_projects')}}">projets
-				<span class="hover-link"></span>
-			</a>
-
-
 			<a id="js-cv" class="navbar-navigation-list-link" href="{{path('app_cv')}}">CV
 				<span class="hover-link"></span>
 			</a>
+			{% if app.user %}
+				<a id="js-projects" class="navbar-navigation-list-link" href="{{path('app_logout')}}">Me déconnecter
+					<span class="hover-link"></span>
+				</a>
+			{% else %}
+				<a id="js-projects" class="navbar-navigation-list-link" href="{{path('app_login')}}">Me connecter
+					<span class="hover-link"></span>
+				</a>
+				<a id="js-projects" class="navbar-navigation-list-link" href="{{path('app_register')}}">M'inscrire
+					<span class="hover-link"></span>
+				</a>
+			{% endif %}
+
 
 		</div>
 	</div>
