@@ -1,18 +1,47 @@
-{% extends 'base.html.twig' %}
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>
+			{% block title %}
+				Andreotti Ludovic - Inscription
+			{% endblock %}
+		</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1"/>
+		<link
+		rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+		{# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
+		{% block stylesheets %}
+			{{ encore_entry_link_tags('app') }}
+		{% endblock %}
 
-{% block title %}
-	Andreotti ludovic - inscription
-{% endblock %}
+		{% block javascripts %}
+			{{ encore_entry_script_tags('app') }}
+		{% endblock %}
+	</head>
+	{{ include('_partial/navbar.html.twig') }}
 
-{% block body %}
-	<h1>Inscription</h1>
 
-	{{ form_start(registrationForm) }}
-	{{ form_row(registrationForm.pseudo) }}
-	{{ form_row(registrationForm.email) }}
-	{{ form_row(registrationForm.plainPassword, {
-            label: 'Mot de passe'
-        }) }}
-	<button type="submit" class="btn">S'inscrire</button>
-	{{ form_end(registrationForm) }}
-{% endblock %}
+	{% block body %}
+		<header class="login-header">
+			<h1>Inscription</h1>
+		</header>
+
+		<div class="login-form registration-form">
+			{{ form_start(registrationForm) }}
+			<div class="form-input">
+				<span>Votre Prénom:</span>
+				{{ form_widget(registrationForm.pseudo) }}</div>
+			<div class="form-input">
+				<span>Votre Email</span>
+				{{ form_widget(registrationForm.email) }}
+			</div>
+			<div class="form-input">
+				Entrez votre mot de passe:
+				{{ form_widget(registrationForm.plainPassword) }}
+			</div>
+			<button type="submit" class="form-button-margin login-button">S'inscrire</button>
+			{{ form_end(registrationForm) }}
+		</div>
+	{% endblock %}
+</html>

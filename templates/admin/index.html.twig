@@ -3,15 +3,63 @@
 {% block title %}Andreotti Ludovic - Admin
 {% endblock %}
 {% block body %}
-	adimn page
 
-	<button>
-		<a href={{path('app_admin_category_add')}}>
-			Catégories
-		</button>
-		<button>
-			<a href={{path('app_admin_pictures_add')}}>
-				images
-			</button>
+
+	<main class="admin-main">
+		<nav class="admin-nav">
+
+
+			<a class="admin-nav-button" href={{path('app_admin_category_add')}}>
+				Ajouter une Catégorie
+			</a>
+
+
+			<a class="admin-nav-button" href={{path('app_admin_pictures_add')}}>
+				Ajouter une images
+			</a>
+
+			<div class="admin-category">
+				<h3>Catégories:</h3>
+				<ul class="admin-category-lit">
+					{% for cat in categories %}
+						<li>
+							{{cat.name}}
+						</li>
+
+
+					{% endfor %}
+				</ul>
+			</div>
+			{{ dump(app.user.roles) }}
+			<div class="admin-pictures">
+				<h3>Images:</h3>
+				<ul class="pictures-admin">
+					{% for pict in pictures %}
+						<li class="picture-admin-item">
+							<span>{{pict.title}}</span>
+
+							<small>{{pict.categories}}</small>
+							<a href="{{path("app_admin_pictures_delete",{"id":pict.id})}}">Suppr</a>
+						</li>
+
+
+					{% endfor %}
+				</ul>
+			</div>
 		</div>
-	{% endblock %}
+	</nav>
+	<div class="admin-picture-view">
+		{% for message in app.flashes('succes') %}
+			{{message}}
+		{% endfor %}
+		{% for pict in pictures %}
+			<div class="admin-picture-view-container">
+				<span class="img-show-admin-title">{{ pict.title}}
+					|
+					<small>{{pict.categories}}</small>
+				</span>
+				<img class="img-show-admin" src="{{asset("/uploads/images/" ~ pict.filename)}}" alt="">
+			</div>
+		{% endfor %}
+	</div>
+</main>{% endblock %}
