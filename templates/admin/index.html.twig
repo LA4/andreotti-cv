@@ -30,7 +30,6 @@
 					{% endfor %}
 				</ul>
 			</div>
-			{{ dump(app.user.roles) }}
 			<div class="admin-pictures">
 				<h3>Images:</h3>
 				<ul class="pictures-admin">
@@ -39,7 +38,10 @@
 							<span>{{pict.title}}</span>
 
 							<small>{{pict.categories}}</small>
-							<a href="{{path("app_admin_pictures_delete",{"id":pict.id})}}">Suppr</a>
+							{% if  is_granted("ROLE_ADMIN")  %}
+
+								<a href="{{path("app_admin_pictures_delete",{"id":pict.id})}}">Suppr</a>
+							{% endif %}
 						</li>
 
 

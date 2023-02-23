@@ -43,13 +43,7 @@ class PictureType extends AbstractType
                         'class' => Categories::class,
                         'choice_label' => 'name',
                         'label' => 'Catégorie'
-                    ])
-            ->add('ajouter', SubmitType::class,[
-                'attr' => [
-                    'class'=> 'picture-form-button'
-                ]
-            ])
-                    ;
+                    ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

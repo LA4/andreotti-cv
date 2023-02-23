@@ -36,7 +36,9 @@
 							<span>{{pict.title}}</span>
 
 							<small>{{pict.categories}}</small>
-							<a href="{{path("app_admin_pictures_delete",{"id":pict.id})}}">Suppr</a>
+							{% if is_granted("ROLE_ADMIN") %}
+								<a href="{{path("app_admin_pictures_delete",{"id":pict.id})}}">Suppr</a>
+							{% endif %}
 						</li>
 
 
@@ -48,11 +50,38 @@
 	<div class="picture-form">
 		<h4>Nouvelle image</h4>
 		<div class="picture-add-form">
-			{{form_start(formPicture)}}
-			{{ form_row(formPicture.title ) }}
-			{{ form_row(formPicture.filename ) }}
-			{{ form_rest(formPicture) }}
-			{{ form_end(formPicture) }}
+			{% if is_granted("ROLE_ADMIN") %}
+				{{form_start(formPicture)}}
+				{{ form_row(formPicture.title ) }}
+				{{ form_row(formPicture.filename ) }}
+				{{ form_rest(formPicture ) }}
+
+				<button type="submit" class="form-button-margin login-button">
+					Ajouter
+				</button>
+				{{ form_end(formPicture) }}
+			{% else %}
+				<form name="picture" method="">
+					<div>
+						<label for="picture_title">Titre</label>
+						<input type="text" class="form-row"/></div>
+					<div>
+						<label for="picture_filename">Ajouter une image
+						</label>
+						<input type="file"/></div>
+					<div>
+						<label for="picture_Categories">Catégorie</label>
+						<select name="picture[Categories]">
+							<option>dessin</option>
+							<option>graphisme</option>
+						</select>
+					</div>
+					<button class="form-button-margin login-button">
+						Vous n'etes pas autorisé à faire cela
+					</button>
+
+				</form>
+			{% endif %}
 		</div>
 
 	</div>
