@@ -1,10 +1,52 @@
 {% extends 'base.html.twig' %}
-{% block title %}Andreotti Ludovic - Cv
+{% block title %}Andreotti Ludovic - à propos
 {% endblock %}
 
 {% block body %}
+	<header class="about-header">
+		<div class="about-header-background"></div>
+		<h1 class="about-title ">En savoir plus</h1>
+		<div class="about-header-dot-container">
+			<span class="about-header-dot"></span>
+			<span class="about-header-dot dot-delay-1"></span>
+			<span class="about-header-dot dot-delay-2"></span>
+		</div>
+	</header>
 
-	<div class="cv-show">
-		ici sera le CV
-	</div>
-{% endblock %}
+
+	<aside class="about-img-container">
+		<div class="about-img-descr">
+			<div class="about-img-descr-text">
+				<span class="about-img-title">Ludovic Andreotti</span>
+				<span>30 ans</span>
+				<span>Permis B / Véhiculé</span>
+				<span>Baccalauréat STI
+				</span>
+			</div>
+		</div>
+		<img class="about-img" src="{{asset("/assets/uphead.jpg")}}" alt="Photo portrait de Ludovic Andreotti">
+	</aside>
+
+
+	<div class="about-show-container">
+		<p class="about-show-p1">
+			<span class="about-show-p1-pop-out-1 about-margin">Curieux, j’ai appris les bases des langages les plus courants:  HTML, CSS, Javascript, PHP.</span>
+
+			<span class="about-show-p1-pop-out-2 about-margin">J’ai également des bases dans les Frameworks Symfony, Vue.js.</span>
+
+			<span class="about-show-p1-pop-out-3 about-margin">
+				Tout au long de mon parcours initiatique j’ai pu apprendre à comprendre et m’initier au JAVA, Python et Django.
+			</span>
+
+			<span class="about-show-p1-pop-out-4 about-margin">
+				L’expérience acquise durant mes années professionnelles me permet de comprendre la réactivité et la rigueur que demande le travail en entreprise et je sais être à la hauteur sur ce point.</span>
+		</p>
+		<p class="about-show-p2 about-margin">
+			Mes expériences dans le développement sont souvent la réponse à des problèmes rencontrés lors de mes anciennes expériences professionnelles,<br>
+			afin d’optimiser et faciliter mon quotidien. En tant que graphiste à mon compte j’avais besoin de montrer l’éventail de mes compétences et de proposer à mes futurs clients une exposition sur la toile via des sites One page.
+			<br>
+			Dans mon métier d’assistant je voyais que la capacité de développer des applications aurait pu me faciliter grandement la tâche et faciliter la fluidité des échanges. Ce qui nous aurait éviter des pertes de temps inutiles, c’est pour cela que je me suis intéressé au langage PYTHON.
+		</p>
+	</p>
+
+</div>{% endblock %}

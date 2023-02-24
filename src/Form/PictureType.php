@@ -10,6 +10,7 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Validator\Constraints\File;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 class PictureType extends AbstractType
@@ -17,11 +18,13 @@ class PictureType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('title')
-            ->add('Categories',EntityType::class,[
-                'class' => Categories::class,
-                'choice_label' => 'name'
+            ->add('title',TextType::class,[
+                'label' => "Titre",
+                'attr' => [
+                    'class' => "form-row",
+                    ]
             ])
+            
             ->add('filename', FileType::class,[
                 'mapped' => false,
                 'constraints' => [
@@ -33,9 +36,14 @@ class PictureType extends AbstractType
                         'mimeTypesMessage' => 'Please upload a valid image',
                         ])
                     ],
+                    'label' => "Ajouter une image ",
+                    
                     ])
-            ->add('ajouter', SubmitType::class)
-                    ;
+            ->add('Categories',EntityType::class,[
+                        'class' => Categories::class,
+                        'choice_label' => 'name',
+                        'label' => 'Catégorie'
+                    ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

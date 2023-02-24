@@ -20,7 +20,8 @@ class CategoryController extends AbstractController
     public function category(
         EntityManagerInterface $em,
         Request $request,
-        CategoriesRepository $categoriesRepository): Response
+        CategoriesRepository $categoriesRepository,
+        PicturesRepository $picturesRepository): Response
     {
         $category = new Categories();
         $formCategories = $this->createForm(CategoryType::class, $category);
@@ -38,10 +39,12 @@ class CategoryController extends AbstractController
         }
 
         $categories = $categoriesRepository->findAll();
+        $pictures = $picturesRepository->findAll();
 
         return $this->render('admin/category.html.twig', [
-            'form' => $formCategories ->createView(),
-            'categories' => $categories
+            'formCategories' => $formCategories ->createView(),
+            'category' => $categories,
+            'pictures' => $pictures
         ]);
     }
 
@@ -54,15 +57,5 @@ class CategoryController extends AbstractController
          return $this->redirectToRoute('app_admin_category_add');
     }
 
-    #[Route('/{name}',name:'show')]
-    public function show(CategoriesRepository $categoriesRepository,$name)
-    {
-
-        $category = $categoriesRepository-> findBy(['name'=> $name]);
-
-
-        return $this->render('admin/category-pictures.html.twig', [
-            'category' => $category,
-        ]);
-    }
+   
 }

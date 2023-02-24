@@ -4,27 +4,102 @@
 {% endblock %}
 
 {% block body %}
-	{% for message in app.flashes('succes') %}
-		{{message}}
-	{% endfor %}
-	<div style="display:flex;margin:auto;">
-		<aside>
-			liste des images
-			<div>
-				{% for picture in pictures %}
-					{{picture.title}}
-					<img style="display:block;width:300px;height:300px;" src="{{asset('uploads/images/' ~ picture.filename)}}" alt="">
-					<a style="color:red;" href="{{path('app_admin_pictures_delete',{"id":picture.id} )}}">supprimer</a>
-					<span>
-						categorie :{{ picture.categories}}
-					</span>
+
+	<main class="admin-main">
+		<nav class="admin-nav">
+			<a class="admin-nav-button" href={{path('app_admin_category_add')}}>
+				Ajouter une Catégorie
+			</a>
+			<a class="admin-nav-button" href={{path('app_admin_pictures_add')}}>
+				Ajouter une images
+			</a>
+
+			<div class="admin-category">
+				<h3>Catégories:</h3>
+				<ul class="pictures-admin">
+					{% for cat in category %}
+						<li class="picture-admin-item">
+							{{cat.name}}
+							{% if is_granted("ROLE_ADMIN") %}
+								<a href="{{path("app_admin_category_delete",{"id":cat.id})}}">Suppr</a>
+							{% endif %}
+						</li>
+					{% endfor %}
+				</ul>
+				{% for message in app.flashes('succes') %}
+					{{message}}
 				{% endfor %}
 			</div>
-		</aside>
-		<div style="display:flex;margin:auto;">
-			Nouvelle image
-			{{form(formPicture)}}
 
+			<div class="admin-pictures">
+				<h3>Images:</h3>
+				<ul class="pictures-admin">
+					{% for pict in pictures %}
+						<li class="picture-admin-item">
+							<span>{{pict.title}}</span>
+
+							<small>{{pict.categories}}</small>
+							{% if is_granted("ROLE_ADMIN") %}
+								<a href="{{path("app_admin_pictures_delete",{"id":pict.id})}}">Suppr</a>
+							{% endif %}
+						</li>
+
+
+					{% endfor %}
+				</ul>
 			</div>
 		</div>
-	{% endblock %}
+	</nav>
+	<div class="picture-form">
+		<h4>Nouvelle image</h4>
+		<div class="picture-add-form">
+			{% if is_granted("ROLE_ADMIN") %}
+				{{form_start(formPicture)}}
+				{{ form_row(formPicture.title ) }}
+				{{ form_row(formPicture.filename ) }}
+				{{ form_rest(formPicture ) }}
+
+				<button type="submit" class="form-button-margin login-button">
+					Ajouter
+				</button>
+				{{ form_end(formPicture) }}
+			{% else %}
+				<form name="picture" method="">
+					<div>
+						<label for="picture_title">Titre</label>
+						<input type="text" class="form-row"/></div>
+					<div>
+						<label for="picture_filename">Ajouter une image
+						</label>
+						<input type="file"/></div>
+					<div>
+						<label for="picture_Categories">Catégorie</label>
+						<select name="picture[Categories]">
+							<option>dessin</option>
+							<option>graphisme</option>
+						</select>
+					</div>
+					<button class="form-button-margin login-button">
+						Vous n'etes pas autorisé à faire cela
+					</button>
+
+				</form>
+			{% endif %}
+		</div>
+
+	</div>
+	<div class="admin-picture-view">
+		{% for message in app.flashes('succes') %}
+			{{message}}
+		{% endfor %}
+		{% for pict in pictures %}
+			<div class="admin-picture-view-container">
+				<span class="img-show-admin-title">{{ pict.title}}
+					|
+					<small>{{pict.categories}}</small>
+				</span>
+				<a href="{{path("app_admin_pictures_show",{"id":pict.id})}}"><img class="img-show-admin" src="{{asset("/uploads/images/" ~ pict.filename)}}" alt=""></a>
+			</div>
+		{% endfor %}
+	</div>
+</main>{% endblock %}

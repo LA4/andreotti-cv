@@ -5,9 +5,10 @@ const contact = document.querySelector('#js-contact');
 const projects = document.querySelector('#js-projects');
 const cv = document.querySelector('#js-cv');
 
+
 let active = window.location.pathname
 switch (active) {
-    case '/':
+    case '/%3F':
         home.classList.add('active');
         break;
     case '/aPropos':

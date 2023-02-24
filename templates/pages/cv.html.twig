@@ -4,7 +4,59 @@
 
 {% block body %}
 
-	<div class="cv-show">
-		ici sera le CV
+	<header class="cv-header"></header>
+	<div class="cv-pro">
+		<h3 class="cv-title">Expériences professionnelles</h3>
+		<div class="cv-pro-1">
+			<h4 class="inactive-cv cv-pro-h4 assistant">Assistant adminitratif et commercial</h4>
+			<ul class=" inactive-cv cv-pro-ul ul-assistant">
+				<li>Premier contact avec le prospect</li>
+				<li>Prise de rendez-vous avec le contact</li>
+				<li>Gestion du planning du commercial</li>
+				<li>Confection des devis</li>
+				<li>Gestion des bons de commande</li>
+				<li>Coordoner et planifier les livraisons avec le poseur et l'usine</li>
+				<li>Déclaration de travaux avec les clients</li>
+				<li>Donner des rendez-vous aux clients pour la livraison</li>
+				<li>Faire les satisfactions client</li>
+				<li>Gérer le service après vente</li>
+				<li>Vente et conseils d'accessoire et produits</li>
+				<li>Gestion des stocks et commandes</li>
+			</ul>
+		</div>
+		<div class="cv-pro-1">
+			<h4 class="inactive-cv cv-pro-h4 graphiste">Graphiste Freelance</h4>
+			<ul class="inactive-cv cv-pro-ul ul-graphiste">
+				<li>Entretien avec le client afin d'élaborer le cahier des charges</li>
+				<li>Recherche et création</li>
+				<li>Dialogue et explication</li>
+				<li>Livraison du produit</li>
+			</ul>
+		</div>
+		<div class="cv-pro-1">
+			<h4 class="inactive-cv cv-pro-h4 animateur">Assistant animateur</h4>
+			<ul class="inactive-cv cv-pro-ul ul-animateur">
+				<li>Elabrer les suppports d'apprentissage</li>
+				<li>Accueillir les élèves</li>
+				<li>Dispenser un cours de musique</li>
+				<li>Accompagner dans l'apprentissage</li>
+			</ul>
+		</div>
 	</div>
+	<div class="cv-perso">
+		<h3 class="cv-perso-title">Expériences personnelles</h3>
+		<div class="cv-web">
+			<h4 class="cv-perso-h4">WEB</h4>
+			<img class="cv-perso-img" src="{{asset("/assets/web.png")}}" alt="">
+		</div>
+		<div class="cv-web">
+			<h4 class="cv-perso-h4">Langages de Développement</h4>
+			<img src="{{asset("/assets/prog.png")}}" alt="">
+		</div>
+		<div class="cv-web">
+			<h4 class="cv-perso-h4">Logiciel de DAO</h4>
+			<img src="{{asset("/assets/logiciel.png")}}" alt="">
+		</div>
+	</div>
+	<div class="cv-interest"></div>
 {% endblock %}

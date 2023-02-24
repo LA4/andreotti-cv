@@ -3,15 +3,69 @@
 {% block title %}Andreotti Ludovic - Admin
 {% endblock %}
 {% block body %}
-	adimn page
 
-	<button>
-		<a href={{path('app_admin_category_add')}}>
-			Catégories
-		</button>
-		<button>
-			<a href={{path('app_admin_pictures_add')}}>
-				images
-			</button>
+
+	<main class="admin-main">
+		<nav class="admin-nav">
+
+
+			<a class="admin-nav-button" href={{path('app_admin_category_add')}}>
+				Ajouter une Catégorie
+			</a>
+
+
+			<a class="admin-nav-button" href={{path('app_admin_pictures_add')}}>
+				Ajouter une images
+			</a>
+
+			<div class="admin-category">
+				<h3>Catégories:</h3>
+				<ul class="pictures-admin">
+					{% for cat in categories %}
+						<li class="picture-admin-item">
+							{{cat.name}}
+							{% if is_granted("ROLE_ADMIN") %}
+								<a href="{{path("app_admin_category_delete",{"id":cat.id})}}">Suppr</a>
+							{% endif %}
+						</li>
+					{% endfor %}
+				</ul>
+				{% for message in app.flashes('succes') %}
+					{{message}}
+				{% endfor %}
+			</div>
+			<div class="admin-pictures">
+				<h3>Images:</h3>
+				<ul class="pictures-admin">
+					{% for pict in pictures %}
+						<li class="picture-admin-item">
+							<span>{{pict.title}}</span>
+
+							<small>{{pict.categories}}</small>
+							{% if  is_granted("ROLE_ADMIN")  %}
+
+								<a href="{{path("app_admin_pictures_delete",{"id":pict.id})}}">Suppr</a>
+							{% endif %}
+						</li>
+
+
+					{% endfor %}
+				</ul>
+			</div>
 		</div>
-	{% endblock %}
+	</nav>
+	<div class="admin-picture-view">
+		{% for message in app.flashes('succes') %}
+			{{message}}
+		{% endfor %}
+		{% for pict in pictures %}
+			<div class="admin-picture-view-container">
+				<span class="img-show-admin-title">{{ pict.title}}
+					|
+					<small>{{pict.categories}}</small>
+				</span>
+				<a href="{{path("app_admin_pictures_show",{"id":pict.id})}}"><img class="img-show-admin" src="{{asset("/uploads/images/" ~ pict.filename)}}" alt=""></a>
+			</div>
+		{% endfor %}
+	</div>
+</main>{% endblock %}

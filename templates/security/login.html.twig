@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>
+			{% block title %}Andreotti Ludovic
+			{% endblock %}
+		</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1"/>
+		<link
+		rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+		{# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
+		{% block stylesheets %}
+			{{ encore_entry_link_tags('app') }}
+		{% endblock %}
+
+		{% block javascripts %}
+			{{ encore_entry_script_tags('app') }}
+		{% endblock %}
+	</head>
+
+
+	{% block body %}
+		<header class="login-header">
+			<h1 class="">Connectez vous:</h1>
+		</header>
+		<form class="login-form" method="post">
+			{% if error %}
+				<div class="">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+			{% endif %}
+			{% if app.user %}
+				<div>
+					Vous êtes déjà connecté :
+					{{ app.user.userIdentifier }},
+					<a href="{{ path('app_logout') }}">Logout</a>
+				</div>
+			{% endif %}
+
+			<div class="form-input">
+				<label for="inputEmail">Email:</label>
+				<input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
+			</div>
+			<div class="login-pass">
+				<label for="inputPassword">Mot de passe</label>
+				<input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
+			</div>
+
+			<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+
+			<button class="login-button form-button-margin" type="submit">
+				connexion
+			</button>
+		</form>
+	{% endblock %}
+</html>

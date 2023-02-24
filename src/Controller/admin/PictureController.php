@@ -4,7 +4,9 @@ namespace App\Controller\admin;
 
 use App\Entity\Pictures;
 use App\Form\PictureType;
+use App\Repository\CategoriesRepository;
 use App\Repository\PicturesRepository;
+use App\Services\PictureService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -21,7 +23,9 @@ class PictureController extends AbstractController
         EntityManagerInterface $em,
         Request $request,
         PicturesRepository $picturesRepository,
-        SluggerInterface $slugger): Response
+        SluggerInterface $slugger,
+        CategoriesRepository $categoriesRepository
+        ): Response
     {
 
         $picture = new Pictures();
@@ -31,7 +35,6 @@ class PictureController extends AbstractController
         if($formPicture -> isSubmitted() && $formPicture -> isValid())
         {
             $fileName = $formPicture->get('filename')->getData();
-
             if ($fileName) {
 
                 $originalFilename = pathinfo($fileName->getClientOriginalName(), PATHINFO_FILENAME);
@@ -62,12 +65,25 @@ class PictureController extends AbstractController
         }
 
         $pictures = $picturesRepository->findAll();
+        $category = $categoriesRepository->findAll();
 
         return $this->render('admin/pictures.html.twig', [
             'formPicture' => $formPicture->createView(),
-            'pictures'    => $pictures
+            'pictures'    => $pictures,
+            'category' => $category,
         ]);
     }
+
+    #[route('/voir/{id}', name: 'show')]
+    public function shox($id, PicturesRepository $picturesRepository)
+    {
+        $image = $picturesRepository->findOneBy(['id'=>$id]);
+
+        return $this->render('admin/pictures.show.html.twig', [
+            'image' => $image
+        ]);
+    }
+
     #[Route('/delete/{id}', name: 'delete')]
     public function delete(Pictures $picture, EntityManagerInterface $em)
     {
@@ -85,7 +101,7 @@ class PictureController extends AbstractController
 
             $this -> addFlash('succes','c\'est supprimé');
 
-            return $this-> redirectToRoute('app_admin_pictures_add');
+            return $this-> redirectToRoute('app_admin_home');
         }
         
       return $this-> redirectToRoute('app_admin_pictures_add');

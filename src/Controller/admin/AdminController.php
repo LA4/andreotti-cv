@@ -2,6 +2,8 @@
 
 namespace App\Controller\admin;
 
+use App\Repository\PicturesRepository;
+use App\Repository\CategoriesRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -11,13 +13,16 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class AdminController extends AbstractController
 {
     #[Route('/', name: 'home')]
-    public function admin(): Response
+    public function admin(CategoriesRepository $categoriesRepository, PicturesRepository $picturesRepository): Response
     {
+        $categories = $categoriesRepository->findAll();
+        $pictures = $picturesRepository->findAll();
+
+
         return $this->render('admin/index.html.twig', [
-            'controller_name' => 'AdminController',
+            'categories' => $categories,
+            'pictures' => $pictures
         ]);
     }
   
-
-
 }

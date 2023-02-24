@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+{% block title %}Andreotti Ludovic -
+	{{image.title}}
+{% endblock %}
+{% block body %}
+
+	<div style="background-image:url({{asset('/uploads/images/' ~ image.filename)}})" class="show-image-container"></div>
+
+{% endblock %}

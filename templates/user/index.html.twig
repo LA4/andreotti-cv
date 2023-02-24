@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	{% if app.user %}
+
+		{{app.user.pseudo}}
+	{% endif %}
+{% endblock %}
+
+{% block body %}
+	<header class="cv-header"></header>
+
+	<div class="pofile-card">
+		<span class="profile-card-name">{{app.user.pseudo}}</span>
+		<span class="profile-card-name">{{app.user.email}}</span>
+	</div>
+{% endblock %}
