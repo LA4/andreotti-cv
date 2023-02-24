@@ -15,7 +15,8 @@
 }
 
 body {
-    background-color: var(--grey);
+    background: rgb(43, 51, 55);
+    background: linear-gradient(180deg, rgba(43, 51, 55, 1) 0%, rgba(22, 30, 34, 1) 100%);
     font-size: 16px;
     font-family: 'Poppins', sans-serif;
     margin: 0;

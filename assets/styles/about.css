@@ -133,6 +133,7 @@
     flex-wrap: wrap;
     color: var(--grey);
     padding: 15px;
+    line-height: 1.2rem;
 
 }
 
@@ -153,7 +154,6 @@
     display: block;
     padding: 15px;
     background-color: var(--light-yellow);
-
     animation-delay: .8s;
 }
 
@@ -181,6 +181,6 @@
     padding: 15px;
     background-color: var(--light-yellow);
     animation: shadowing-right 2s ease-in-out both;
-
+    line-height: 1.2rem;
     animation-delay: 2s;
 }
