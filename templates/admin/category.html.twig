@@ -1,24 +1,84 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Andreotti Ludovic - ajout de categories
+{% block title %}Andreotti Ludovic - ajout de gategories
 {% endblock %}
 
 {% block body %}
-	<div class="container">
-		<aside>
-			liste des categories
-			<ul>
-				{% for cat in categories %}
-					<li>{{cat.name}}</li>
-					<li></li>
-					<a style="color:white;" href={{path('app_admin_category_delete',{"id":cat.id} )}}>suppr</a>
-				{% endfor %}
-			</ul>
-		</aside>
-		<div>
-			Nouvelle catégorie
-			{{form(form)}}
 
+	<main class="admin-main">
+		<nav class="admin-nav">
+			<a class="admin-nav-button" href={{path('app_admin_category_add')}}>
+				Ajouter une Catégorie
+			</a>
+			<a class="admin-nav-button" href={{path('app_admin_pictures_add')}}>
+				Ajouter une images
+			</a>
+
+			<div class="admin-category">
+				<h3>Catégories:</h3>
+				<ul class="pictures-admin">
+					{% for cat in category %}
+						<li class="picture-admin-item">
+							{{cat.name}}
+							{% if is_granted("ROLE_ADMIN") %}
+								<a href="{{path("app_admin_category_delete",{"id":cat.id})}}">Suppr</a>
+							{% endif %}
+						</li>
+					{% endfor %}
+				</ul>
+				{% for message in app.flashes('succes') %}
+					{{message}}
+				{% endfor %}
+			</div>
+
+			<div class="admin-pictures">
+				<h3>Images:</h3>
+				<ul class="pictures-admin">
+					{% for pict in pictures %}
+						<li class="picture-admin-item">
+							<span>{{pict.title}}</span>
+
+							<small>{{pict.categories}}</small>
+							{% if is_granted("ROLE_ADMIN") %}
+								<a href="{{path("app_admin_pictures_delete",{"id":pict.id})}}">Suppr</a>
+							{% endif %}
+						</li>
+					{% endfor %}
+				</ul>
 			</div>
 		</div>
-	{% endblock %}
+	</nav>
+	<div class="picture-form">
+		<h4>Nouvelle Catégorie</h4>
+		<div class="picture-add-form">
+			{% if is_granted("ROLE_ADMIN") %}
+				{{form_start(formCategories)}}
+				{{ form_row(formCategories.name) }}
+
+				<button type="submit" class="form-button-margin login-button">Ajouter</button>
+				{{ form_end(formCategories) }}
+			{% else %}
+				<form name="category" method="">
+					<div>
+						<label for="category_name">Nom:
+						</label><input type="text" id="category_name"/></div>
+
+					<button class="form-button-margin login-button">Vous n'etes pas autorisé à faire cela</button>
+				</form>
+			{% endif %}
+		</div>
+
+	</div>
+	<div class="admin-picture-view">
+
+		{% for pict in pictures %}
+			<div class="admin-picture-view-container">
+				<span class="img-show-admin-title">{{ pict.title}}
+					|
+					<small>{{pict.categories}}</small>
+				</span>
+				<a href="{{path("app_admin_pictures_show",{"id":pict.id})}}"><img class="img-show-admin" src="{{asset("/uploads/images/" ~ pict.filename)}}" alt=""></a>
+			</div>
+		{% endfor %}
+	</div>
+</main>{% endblock %}

@@ -20,15 +20,19 @@
 
 			<div class="admin-category">
 				<h3>Catégories:</h3>
-				<ul class="admin-category-lit">
+				<ul class="pictures-admin">
 					{% for cat in categories %}
-						<li>
+						<li class="picture-admin-item">
 							{{cat.name}}
+							{% if is_granted("ROLE_ADMIN") %}
+								<a href="{{path("app_admin_category_delete",{"id":cat.id})}}">Suppr</a>
+							{% endif %}
 						</li>
-
-
 					{% endfor %}
 				</ul>
+				{% for message in app.flashes('succes') %}
+					{{message}}
+				{% endfor %}
 			</div>
 			<div class="admin-pictures">
 				<h3>Images:</h3>
@@ -60,7 +64,7 @@
 					|
 					<small>{{pict.categories}}</small>
 				</span>
-				<img class="img-show-admin" src="{{asset("/uploads/images/" ~ pict.filename)}}" alt="">
+				<a href="{{path("app_admin_pictures_show",{"id":pict.id})}}"><img class="img-show-admin" src="{{asset("/uploads/images/" ~ pict.filename)}}" alt=""></a>
 			</div>
 		{% endfor %}
 	</div>

@@ -74,6 +74,15 @@ class PictureController extends AbstractController
         ]);
     }
 
+    #[route('/voir/{id}', name: 'show')]
+    public function shox($id, PicturesRepository $picturesRepository)
+    {
+        $image = $picturesRepository->findOneBy(['id'=>$id]);
+
+        return $this->render('admin/pictures.show.html.twig', [
+            'image' => $image
+        ]);
+    }
 
     #[Route('/delete/{id}', name: 'delete')]
     public function delete(Pictures $picture, EntityManagerInterface $em)
