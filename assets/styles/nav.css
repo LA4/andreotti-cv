@@ -114,9 +114,29 @@
     background-color: var(--yellow);
 }
 
-@media screen and (max-width: 500px) {
-
+@media screen and (max-width: 900px) {
     .navbar {
-        display: none
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .navbar-logo-link {
+        margin: auto;
+    }
+
+    .navbar-navigation {
+        display: flex;
+        justify-content: center;
+        margin: auto;
+        height: 25px;
+    }
+
+    .navbar-navigation-list-link {
+        font-size: .6rem;
+    }
+
+    .active {
+        width: 70px;
     }
 }

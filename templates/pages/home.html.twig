@@ -15,6 +15,32 @@
 			<div class="home-subtitle-container">
 				<h2 class="home-subtitle">Développeur WEB</h2>
 			</div>
+			<div class="header-svg">
+				<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+				<!DOCTYPE svg PUBLIC "-//W3C//DTDSVG1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+				<svg width="100%" height="100%" viewBox="0 0 600 114" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+					<g transform="matrix(1,0,0,1,-113.692,-198.877)">
+						<g class="header-svg-back" transform="matrix(0.518474,-0.0192877,0.0420343,1.12992,161.558,38.2916)">
+							<path d="M-0.808,236.566C-0.808,236.566 44.444,177.576 122.828,217.172C201.212,256.768 456.89,193.991 480,193.737C553.535,192.929 748.561,236.566 805.531,252.727" style="fill:rgb(66,78,83);"/>
+						</g>
+						<g class="header-svg-fore" transform="matrix(0.741952,-0.0276013,0.0420343,1.12992,104.348,40.4199)">
+							<path d="M-1.028,240.444C-1.028,240.444 44.444,177.576 122.828,217.172C201.212,256.768 456.89,193.991 480,193.737C553.535,192.929 748.835,243.991 805.805,260.153" style="fill:rgb(43,51,55);"/>
+						</g>
+						<g class="header-svg-montain" transform="matrix(0.956296,-0.0355751,0.0446372,1.19989,15.9461,-37.1664)">
+							<path d="M439.192,302.02C439.192,302.02 535.354,186.465 577.374,221.212C619.394,255.96 667.879,310.909 667.879,310.909L439.192,302.02Z" style="fill:rgb(66,78,83);"/>
+						</g>
+						<g class="header-svg-fore-montain" transform="matrix(0.956296,-0.0355751,0.0420343,1.12992,56.4128,-10.2548)">
+							<path d="M326.061,292.708C326.061,292.708 474.633,278.566 494.835,286.647C515.037,294.728 584.734,280.586 599.886,287.657C615.037,294.728 673.28,306.515 673.28,306.515L326.061,292.708Z" style="fill:rgb(43,51,55);"/>
+						</g>
+
+						<g class="header-svg-cap">
+							<path d="M523.466,218.347C523.466,218.347 525.023,233.72 535.614,227.63C546.206,221.54 586.984,237.692 585.925,228.159C584.866,218.627 591.867,224.489 589.828,219.025C583.603,202.345 554.245,183.889 523.466,218.347Z" style="fill:rgb(196,206,211);"/>
+						</g>
+					</g>
+				</svg>
+
+			</div>
+
 		</header>
 
 
@@ -33,7 +59,8 @@
 					{% endif %}
 				</span>
 				<span class="home-explain-text">
-					<p class="home-explain-text-p1">Actuellement en reconversion professionnelle,</p>
+					<p class="home-explain-text-p1">Actuellement en reconversion professionnel,
+					</p>
 					<p class="home-explain-text-p2">je suis à la recherche d’une structure afin de mener à bien mon projet dans le développement WEB.</p>
 				</span>
 
@@ -41,6 +68,7 @@
 
 
 			<aside class="home-interest-list ">
+
 				<a class="home-interest-items" href="{{path('app_home' ,{name:"graphisme"})}}">
 					<span>Graphisme
 						<span class="home-interest-cover"></span>
@@ -51,12 +79,6 @@
 						<span class="home-interest-cover"></span>
 					</span>
 				</a>
-				{# <a class="home-interest-items" href="{{path('app_home' ,{name:"velo"})}}">
-													<span>Velo
-														<span class="home-interest-cover"></span>
-													</span>
-												</a> #}
-
 			</aside>
 
 			{% if name %}
@@ -65,11 +87,11 @@
 					<div class="home-interest-view  ">
 						{% for picture in pictures %}
 							<img style="display:none;" id="js-caroussel-img" src="{{asset('/uploads/images/' ~ picture.filename)}}" alt="{{picture.title}}">
-						{% endfor %}
+							{% endfor %}
+						</div>
+						<span class="home-interest-next">&#62</span>
 					</div>
-					<span class="home-interest-next">&#62</span>
-				</div>
-			{% endif %}
-		</div>
-	</main>
-{% endblock %}
+				{% endif %}
+			</div>
+		</main>
+	{% endblock %}
